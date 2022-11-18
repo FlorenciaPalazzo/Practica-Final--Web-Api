@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using WebApiFinalPalazzoFlorencia.Data;
 using WebApiFinalPalazzoFlorencia.Models;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
 namespace WebApiFinalPalazzoFlorencia.Controllers
 {
@@ -18,6 +19,7 @@ namespace WebApiFinalPalazzoFlorencia.Controllers
             _context = context;
         }
 
+
         [HttpGet]
         public IEnumerable<Doctor> Get()
         {
@@ -26,7 +28,7 @@ namespace WebApiFinalPalazzoFlorencia.Controllers
         }
 
         [HttpGet("{id}")]
-        public Doctor Get( int id)
+        public Doctor Get(int id)
         {
             Doctor doctor = (from d in _context.Doctores where id == d.DoctorId select d).SingleOrDefault();
             return doctor;
@@ -52,6 +54,30 @@ namespace WebApiFinalPalazzoFlorencia.Controllers
             _context.SaveChanges();
             return doctorDelete;
         }
+
+        //Segunda Parte
+
+        [HttpPut("{id}")]
+        public ActionResult Put(int id, Doctor doctor)
+        {
+            if (id == doctor.DoctorId)
+            {
+                NotFound();
+            }
+            _context.Entry(doctor).State= EntityState.Modified;
+            _context.SaveChanges();
+
+            return Ok();
+        }
+
+        [HttpGet("especialidad/{especialidad}")]
+        public List<Doctor> Get(string especialidad)
+        {
+            List<Doctor> espDoctor = (from e in _context.Doctores where e.Especialidad == especialidad select e).ToList();
+            return espDoctor;
+        }
+
+        
 
     }
 }
