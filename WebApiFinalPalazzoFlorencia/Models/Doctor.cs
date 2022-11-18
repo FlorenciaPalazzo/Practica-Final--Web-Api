@@ -12,10 +12,10 @@ namespace WebApiFinalPalazzoFlorencia.Models
       
 
         [Column(TypeName = "varchar(50)")]
-        public string Apellido { get; set; }
+        public string? Apellido { get; set; }
 
         [Column(TypeName = "varchar(50)")]
-        public string Especialidad { get; set; }
+        public string? Especialidad { get; set; }
 
 
         //Navegacion

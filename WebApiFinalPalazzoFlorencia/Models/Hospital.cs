@@ -9,13 +9,13 @@ namespace WebApiFinalPalazzoFlorencia.Models
         public int HospitalId { get; set; }
 
         [Column(TypeName = "varchar(50)")]
-        public string Nombre { get; set; }
+        public string? Nombre { get; set; }
 
         [Column(TypeName = "varchar(50)")]
-        public string Direccion { get; set; }
+        public string? Direccion { get; set; }
 
         [Column(TypeName = "varchar(50)")]
-        public string Telefono { get; set; }
+        public string? Telefono { get; set; }
 
         public int? NumCama { get; set; }
 
